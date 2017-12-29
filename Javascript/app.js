@@ -1,7 +1,6 @@
-var sports = ["Football", "Soccer", "Volleyball", "Swimming"];
+var sports = ["football", "soccer", "volleyball", "swimming"];
 
 function displayTopicGif() {
-
   var topic = $(this).attr("data-name");
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
   topic + "&api_key=Ak6PdPxUS0ITIiJwSTuVkHwTl3wDdZRg&limit=10";
@@ -12,23 +11,15 @@ function displayTopicGif() {
   }).done(function(response) {
     var results = response.data;
     $("#sportGifs").empty();
-
+    var p = '';
     for (var i = 0; i < results.length; i++) {
       if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-        var sportDiv = $("<div>");
-        var p = $("<p>").text("Rating: " + results[i].rating);
-        var sportImage = $("<img>");
-        sportImage.attr("src", results[i].images.fixed_height_still.url);
-        sportImage.attr("data-still", results[i].images.fixed_height_still.url);
-        sportImage.attr("data-animate", results[i].images.fixed_height_downsampled.url);
-        sportImage.attr("data-state", "still");
-        sportImage.addClass("gif");
-        $("#sportGifs").append(p);
-        $("#sportGifs").append(sportImage);
-      }
+        p += `<div class="gif-images"><p>Rating: ${results[i].rating}</p><img src='${results[i].images.fixed_height_still.url}' data-still='${results[i].images.fixed_height_still.url}' data-animate='${results[i].images.fixed_height_downsampled.url}' data-state='still' class='gif'/></div>`        
+        }    
     }
-  renderButtons();
-  animateGif();
+    $("#sportGifs").append(p);
+    renderButtons();
+    animateGif();
   });
 }
 
@@ -47,20 +38,20 @@ function animateGif(){
 
 function renderButtons() {
   $("#sportButtons").empty();
+  var a = "";
   for (var i = 0; i < sports.length; i++) {
-    var a = $("<button>");
-    a.addClass("sport");
-    a.attr("data-name", sports[i]);
-    a.text(sports[i]);
-    $("#sportButtons").append(a);
+    a += `<button class='sport' data-name='${sports[i]}'>${sports[i]}</button>`;
   }
+  $("#sportButtons").append(a);
 }
 
 $("#add-sport").on("click", function(event) {
   event.preventDefault();
-  var sport = $("#sport-input").val().trim();
+  var sportsInput = $("#sport-input")
+  var sport = $("#sport-input").val().trim().toLowerCase();;
   sports.push(sport);
   renderButtons();
+  sportsInput.val('');
 });
 
 $(document).on("click", ".sport", displayTopicGif);

@@ -1,0 +1,37 @@
+body {
+	background-image: url("images/background.png");
+	text-align: center;
+}
+
+
+button {
+	display: inline-block;
+	background-color: #D9B310;
+	border-radius: 8px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	font-size: 20px;
+	margin: 5px;
+}
+
+#sportButtons {
+	margin: 10px;
+}
+
+#add-sport {
+	display: inline-block;
+	background-color: #328CC1;
+	border-radius: 8px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	font-size: 20px;
+	margin: 10px;
+}
+
+label, p {
+	color: white;
+	font-size: 15px;
+}
+
+h1 {
+	color: white;
+	font-size: 30px;
+}
