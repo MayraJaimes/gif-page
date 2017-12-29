@@ -61,7 +61,6 @@ $("#add-sport").on("click", function(event) {
   var sport = $("#sport-input").val().trim();
   sports.push(sport);
   renderButtons();
-  animateGif();
 });
 
 $(document).on("click", ".sport", displayTopicGif);
